@@ -1,25 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiService } from '../api.service';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shortener',
   templateUrl: './shortener.component.html',
-  styleUrls: ['./shortener.component.sass']
+  styleUrls: ['./shortener.component.css']
 })
 export class ShortenerComponent implements OnInit {
-
+  @Input() enterUrl;
+  faCheckCircle = faCheckCircle
   constructor(
     private apiService: ApiService
   ) { }
-  oriUrl;
+
+  newUrl;
+  fullUrl;
   ngOnInit() {
   }
 
   shortUrl(enterUrl){
-    // alert(enterUrl)
-    enterUrl = 'http://' + enterUrl;
-    this.oriUrl = this.apiService.getShortener(enterUrl);
-    console.log(this.oriUrl);
+    this.fullUrl = 'http://' + enterUrl;
+    this.apiService.getShortener(enterUrl)
+    .subscribe((res:any) => {
+      if (res.shorturl) {
+        this.newUrl = res.shorturl;
+      }
+      console.log(res.shorturl);
+      console.log(this.newUrl);
+    });
   }
 }

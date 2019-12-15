@@ -11,11 +11,10 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  getShortener(url) {
-    console.log(url);
-    // return this.http.get('https://cutt.ly/api/api.php?key=dd779fc71877aeea0eeed74b31ce9ba2b2740&short='+url+')')
-    return this.http.get('https://cutt.ly/api/api.php?key=dd779fc71877aeea0eeed74b31ce9ba2b2740&short='+url+')')
-    .subscribe(res => res);
-    
+  getShortener(enterUrl) {
+    console.log(enterUrl);
+    // return this.http.get('https://cutt.ly/api/api.php?key=dd779fc71877aeea0eeed74b31ce9ba2b2740&short='+enterUrl+')')
+    // choose this one because it no need to register . just a simple http request, no cors issues;
+    return this.http.get('https://v.gd/create.php?format=json&url='+enterUrl)
   }
 }

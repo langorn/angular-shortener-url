@@ -1,4 +1,22 @@
-<p>
-    <input type="text" [(ngModel)]="enterUrl">
-    <button (click)="shortUrl(enterUrl)">GO</button>
-</p>
+<div>
+
+    <div class="col-md-12 square-box">
+        <form class="form-inline">
+            <div class="col-xs-6 col-md-8 form-group">
+              <!-- <label for="Url">Url</label> -->
+              <input type="text" name="url" [(ngModel)]="enterUrl" class="form-control col-md-8" placeholder="ex: www.yahoo.com">
+            </div>
+            <div class="form-group col-xs-6 col-md-2 " ><button (click)="shortUrl(enterUrl)" class="btn btn-primary btn-block">GO</button></div>
+        </form>
+    </div>
+
+    <div class="row" *ngIf="newUrl">
+        <div class="col-xs-6 col-md-8">
+            <p style="text-align:center">
+                <span>Click to redirect the link: </span>
+                <a href={{newUrl}} target="_blank">{{newUrl}}</a>
+                <fa-icon [icon]="faCheckCircle"></fa-icon>
+            </p>
+        </div>
+    </div>
+</div>
